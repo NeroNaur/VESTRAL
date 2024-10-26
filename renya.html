@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khula:wght@400;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson:wght@400&display=swap" />
+
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Khula, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .home {
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 120px;
+        }
+
+        /* Header styling */
+        .header {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #000;
+            position: fixed;
+            top: 0;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.15);
+            z-index: 100;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 15px;
+            z-index: 101;
+            margin-left: 15px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Links */
+        a {
+            position: relative;
+            text-decoration: none;
+            font-family: Khula;
+            color: #fff;
+        }
+
+        a:after {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            height: 2px;
+            width: 0;
+            left: 0;
+            bottom: -2px;
+            transition: 0.7s;
+        }
+        
+        a:hover {
+            color: #808080;
+            transition: 0.3s;
+        }
+
+        a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;            
+            align-items: center;       
+            gap: 20px;                 
+        }
+
+        .gallery, .about, .artists1, .home1 {
+            letter-spacing: 0.25em;
+            cursor: pointer;
+            margin-right: 15px;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .home1 { margin-left: 65px; }
+
+        .contact {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            margin-right: 65px;
+        }
+
+        /* Body content styling */
+        .body-texts {
+            position: relative;
+            padding-top: 150px;
+            margin-bottom: 50px;
+        }
+
+        .vestral {
+            font-size: 80px;
+            font-family: Judson, serif;
+            letter-spacing: 0.25em;
+            transition: transform 0.6s, text-shadow 0.6s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .top-3-artists {
+            font-size: 34px;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+        }
+
+        .clickable-icons {
+            font-size: 17px;
+            letter-spacing: 0.15em;
+        }
+
+        .vestral:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+                        0 0 30px rgba(255, 255, 255, 0.6),
+                        0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .this-months-top1,
+        .renya2 {
+            font-family: Judson, serif;
+        }
+
+        .this-months-top1 {
+            margin-bottom: 50px;
+            font-size: 22px;
+        }
+
+        .renya2 {
+            font-size: 50px;
+        }
+
+        .renya1 {
+            margin-bottom: 150px;
+        }
+
+        /* Artists Section */
+        .art {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .renya, .yuan, .wisdom {
+            display: flex;
+ flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .n-icon, .n-icon1 {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.6s, box-shadow 0.6s;
+        }
+
+        .n-icon:hover, .n-icon1:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 0px rgba(255, 255, 255, 0.8), 
+                       0 0 10px rgba(255, 255, 255, 0.6),
+                       0 0 35px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Yuan Gallery Section */
+        .yuan-gallery {
+            position: relative;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .yuan-video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Footer styling */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            box-shadow: 0px -4px 20px rgba(255, 255, 255, 0.15);
+            z-index: 100;
+        }
+
+        .copyright-2024-vestral {
+            text-align: center;
+            letter-spacing: 0.25em;
+            font-family: Khula;
+            padding: 0 20px;
+        }
+
+        /* Tablet View (768px - 1024px) */
+        @media screen and (max-width: 1024px) {
+            .header {
+                height: 80px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .home1 {
+                margin-left: 30px;
+            }
+
+            .contact {
+                margin-right: 30px;
+            }
+
+            .vestral {
+                font-size: 60px;
+            }
+
+            .top-3-artists {
+                font-size: 28px;
+            }
+
+            .n-icon, .n-icon1 {
+                width: 200px;
+                height: 200px;
+            }
+
+            .yuan-gallery {
+                width: 90%;
+                margin: 50px auto;
+            }
+        }
+
+        /* Mobile View (up to 767px) */
+        @media screen and (max-width: 767px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #000;
+                flex-direction: column;
+                padding-top: 80px;
+                transition: 0.3s ease;
+                box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1 );
+ }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .vestral {
+                font-size: 40px;
+            }
+
+            .top-3-artists {
+                font-size: 24px;
+            }
+
+            .art {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .n-icon, .n-icon1 {
+                width: 180px;
+                height: 180px;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 12px;
+                padding: 0 15px;
+            }
+        }
+
+        /* Small Mobile View */
+        @media screen and (max-width: 480px) {
+            .vestral {
+                font-size: 30px;
+            }
+
+            .top-3-artists {
+                font-size: 20px;
+            }
+
+            .n-icon, .n-icon1 {
+                width: 150px;
+                height: 150px;
+            }
+
+            .footer {
+                height: 80px;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="home1">HOME</a>
+            <a href="artists.html" class="artists1" id="aRTISTSText">ARTISTS</a>
+            <a href="gallery.html" class="gallery" id="gALLERYText">GALLERY</a>
+            <a href="about.html" class="about" id="aBOUTText">ABOUT</a>
+        </div>
+        <a href="contact.html" class="contact" id="contact">
+            <img alt="" src="IMAGES/icons8-envelope-50.png">
+        </a>
+    </div>
+    <div class="home">
+        <div class="body-texts">
+            <div class="vestral" id="vestral">VESTRAL</div>
+            <div class="top-3-artists">TOP 3 ARTISTS THIS MONTH</div>
+            <div class="clickable-icons">CLICKABLE ICONS</div>
+        </div>
+
+        <div class="art">
+            <div class="renya">
+                <img class="n-icon" alt="" src="IMAGES/RENYA_PFP.jfif" id="image1" onclick="redirectToPage('renya.html')">
+                <div class="renya1">RENYA</div>
+            </div>
+
+            <div class="yuan">
+                <img class="n-icon" alt="" src="IMAGES/YUAN_PFP.png" id="image2" onclick="redirectToPage('yuan.html')">
+                <div class="renya1">YUAN</div>
+            </div>
+
+            <div class="wisdom">
+                <img class="n-icon1" alt="" src="IMAGES/WISDOM_PFP.jfif" id="image3" onclick="redirectToPage('wisdom.html')">
+                <div class="wisdom-kaye">WISDOM KAYE</div>
+            </div>
+        </div>
+
+        <div class="renya-gallery">
+            <div class="renya2">RENYA</div>
+            <div class="this-months-top1">THIS MONTH'S TOP 3</div>
+    
+            <video class="yuan-video" controls width="1500">
+                <source src="VIDEOS/rerenya.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="socials-about">
+                <a href="aboutrenya.html" class="aboutartist">ABOUT</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="copyright-2024-vestral"> 2024. VESTRAL. ALL RIGHTS RESERVED. DESIGN BY NERO</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('. hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            // Hamburger menu toggle
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Optional: Prevent scrolling when mobile menu is open
+            function toggleScroll() {
+                document.body.style.overflow = 
+                    navLinks.classList.contains('active') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleScroll);
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 767) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Your existing redirectToPage function
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>

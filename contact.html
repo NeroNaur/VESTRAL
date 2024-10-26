@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khula:wght@400;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson:wght@400&display=swap" />
+
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Khula, sans-serif;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .home {
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 120px;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Header styling */
+        .header {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #000;
+            position: fixed;
+            top: 0;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.15);
+            z-index: 100;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 15px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        a {
+            position: relative;
+            text-decoration: none;
+            font-family: Khula;
+            color: #fff;
+        }
+
+        a:after {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            height: 2px;
+            width: 0;
+            left: 0;
+            bottom: -2px;
+            transition: 0.7s;
+        }
+        
+        a:hover {
+            color: #808080;
+            transition: 0.3s;
+        }
+
+        a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;            
+            align-items: center;       
+            gap: 20px;                 
+        }
+
+        .gallery,
+        .about,
+        .artists1,
+        .home1 {
+            letter-spacing: 0.25em;
+            cursor: pointer;
+            margin-right: 15px;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .gallery { width: auto; }
+        .about { width: auto; }
+        .home1 { 
+            width: auto;
+            margin-left: 65px;
+        }
+        .artists1 { width: auto; }
+
+        .contact {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            margin-right: 65px;
+        }
+
+        /* Body content styling */
+        .body-texts {
+            position: relative;
+            margin-top: 150px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        .vestral {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            font-size: 80px;
+            font-family: Judson, serif;
+            letter-spacing: 0.25em;
+            transition: transform 0.6s, text-shadow 0.6s;
+            cursor: pointer;
+        }
+
+        .vestral:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+                        0 0 30px rgba(255, 255, 255, 0.6),
+                        0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .about-vestral-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            letter-spacing: 0.25em;
+            text-align: left;
+            font-size: 22.2px;
+            font-family: Khula, sans-serif;
+        }
+
+        /* Contact Container Styling */
+        .contact-container {
+            width: 80%;
+            max-width: 500px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            color: #fff;
+            margin: 30px 0;
+            letter-spacing: 0.1em;
+            font-family: Khula, sans-serif;
+        }
+
+        .contact-container input,
+        .contact-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 15px;
+            background-color: white;
+            color: #000;
+            font-family: Khula, sans-serif;
+            font-size: 16px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-container textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-container input:focus,
+        .contact-container textarea:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-container button {
+            background-color: #333;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: Khula, sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-container button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+        .inquiry-hours {
+            width: 80%;
+            max-width: 500px;
+            margin: 20px auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .inquiry-hours th,
+        .inquiry-hours td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .inquiry-hours th {
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .inquiry-hours tr:last-child td {
+            border-bottom: none;
+        }
+
+        .inquiry-hours tr:hover td {
+            background-color: #f5f5f5;
+            transition: background-color 0.3s ease;
+         }
+
+        /* Optional: Style the header text */
+        .contact-container h2 {
+            text-align: center;
+            margin: 30px 0;
+            letter-spacing: 0.1em;
+        }
+
+        /* Footer styling */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            box-shadow: 0px -4px 20px rgba(255, 255, 255, 0.15);
+            border-radius: 5px 5px 0 0;
+            z-index: 100;
+        }
+
+        .copyright-2024-vestral {
+            text-align: center;
+            letter-spacing: 0.25em;
+            font-family: Khula;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1024px) {
+            .header {
+                height: 80px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .home1 {
+                margin-left: 30px;
+            }
+
+            .contact {
+                margin-right: 30px;
+            }
+
+            .vestral {
+                font-size: 60px;
+            }
+
+            .about-vestral-container {
+                font-size: 20px;
+                letter-spacing: 0.2em;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .hamburger {
+                display: block;
+                margin-right: 15px;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #000;
+                flex-direction: column;
+                padding-top: 80px;
+                transition: 0.3s ease;
+                box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .gallery,
+            .about,
+            .artists1,
+            .home1 {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .body-texts {
+                margin-top: 100px;
+            }
+
+            .vestral {
+                font-size: 40px;
+            }
+
+            .about-vestral-container {
+                font-size: 18px;
+                letter-spacing: 0.15em;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 12px;
+                padding: 0 15px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .nav-links {
+                gap: 5px;
+            }
+
+            .gallery,
+            .about ,
+            .artists1,
+            .home1 {
+                font-size: 0.8rem; margin-right: 3px;
+            }
+
+            .body-texts {
+                margin-top: 80px;
+                padding: 0 15px;
+            }
+
+            .vestral {
+                font-size: 30px;
+                letter-spacing: 0.2em;
+            }
+
+            .about-vestral-container {
+                font-size: 16px;
+                letter-spacing: 0.1em;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 10px;
+                letter-spacing: 0.15em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="home1">HOME</a>
+            <a href="artists.html" class="artists1" id="aRTISTSText">ARTISTS</a>
+            <a href="gallery.html" class="gallery" id="gALLERYText">GALLERY</a>
+            <a href="about.html" class="about" id="aBOUTText">ABOUT</a>
+        </div>
+        <a href="contact.html" class="contact" id="contact">
+            <img alt="" src="IMAGES/icons8-envelope-50.png">
+        </a >
+    </div>
+
+    <div class="home">
+        <div class="body-texts">
+            <div class="vestral" id="vestral">VESTRAL</div>
+            <div class="contact-container">
+                <h2>Get In Touch</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Name" required>
+                <textarea rows="5" placeholder="Message..." required></textarea>
+                <button type="submit">Send Message</button>
+
+                <h2>Our Inquiry Hours</h2>
+                <table class="inquiry-hours">
+                    <tr>
+                        <th>Day</th>
+                        <th>Hours</th>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>10 AM - 4 PM</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="copyright-2024-vestral">© COPYRIGHT 2024. VEST RAL. ALL RIGHTS RESERVED. DESIGN BY NERO</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

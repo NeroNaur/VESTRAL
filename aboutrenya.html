@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Judson:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap" />
+
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Khula, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .home {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Header styling */
+        .header {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #000;
+            position: fixed;
+            top: 0;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.15);
+            z-index: 100;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 15px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        a {
+            position: relative;
+            text-decoration: none;
+            font-family: Khula;
+            color: #fff;
+        }
+
+        a:after {
+            content: "";
+            position: absolute;
+            background-color: #fff;
+            height: 2px;
+            width: 0;
+            left: 0;
+            bottom: -2px;
+            transition: 0.7s;
+        }
+        
+        a:hover {
+            color: #808080;
+            transition: 0.3s;
+        }
+
+        a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;            
+            align-items: center;       
+            gap: 20px;                 
+        }
+
+        .gallery,
+        .about,
+        .artists1,
+        .home1 {
+            letter-spacing: 0.25em;
+            cursor: pointer;
+            margin-right: 15px;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .gallery { width: auto; }
+        .about { width: auto; }
+        .home1 { 
+            width: auto;
+            margin-left: 65px;
+        }
+        .artists1 { width: auto; }
+
+        .contact {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            margin-right: 65px;
+        }
+
+        /* Body content styling */
+        .body-texts {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 578px;
+            height: 759px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .vestral {
+            width: auto;
+            height: 155px;
+            font-size: 80px;
+            font-family: Judson, serif;
+            letter-spacing: 0.25em;
+            transition: transform 0.6s, text-shadow 0.6s;
+            cursor: pointer;
+        }
+
+        .vestral:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+                0 0 30px rgba(255, 255, 255, 0.6),
+                0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Video and Gallery Section */
+        .yuan-video {
+            top: 174px;
+            left: 0px;
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+        }
+
+        .yuan-gallery {
+            position: relative;
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            top: 504px; 
+            width: 1379px; 
+            font-size: 50px; 
+            padding-bottom: 200px; 
+        }
+
+        .yuan1 {
+            font-family: Lora;
+            font-size: 40px;
+            letter-spacing: 0.15em;
+            margin: 0;
+            text-align: center;
+        }
+
+        .this-months-top1 {
+            font-size: 22px;
+            letter-spacing: 0.15em;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .back-link {
+            display: flex;            
+            align-items: center;       
+            gap: 20px;   
+            margin-top: 20px;
+        }
+
+        .back {
+            z-index: 10;
+            letter-spacing: 0.25em;
+            cursor: pointer;
+            margin-right: 15px;
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 70px;
+            width: auto;
+        }
+
+        /* Content Styling */
+        .content,
+        .content1,
+        .content2,
+        .content3 {
+            margin: 0;
+            font-size: 30px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .message-container {
+            position: relative;
+            left: 0px;
+            letter-spacing: 0.25em;
+            text-align: left;
+            display: inline-block;
+            font-size: 50px;
+        }
+
+        /* Footer styling */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            box-shadow: 0px -4px 20px rgba(255, 255, 255, 0.15);
+            border-radius: 5px 5px 0 0;
+            z-index: 100;
+        }
+
+        .copyright-2024-vestral {
+            text-align: center;
+            letter-spacing: 0.25em;
+            font-family: Khula;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 1024px) {
+            .header {
+                height: 80px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .gallery,
+            .about,
+            .artists1,
+            .home1 {
+                font-size: 1.1rem;
+                margin-right: 10px;
+            }
+
+            .home1 {
+                margin-left: 30px;
+            }
+
+            .contact {
+                margin-right: 30px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .body-texts {
+                width: 90%; height: auto;
+            }
+
+            .vestral {
+                font-size: 60px;
+                height: 120px;
+            }
+
+            .yuan-video {
+                width: 90%;
+                height: 500px;
+            }
+
+            .yuan-gallery {
+                width: 90%;
+                padding-bottom: 150px;
+            }
+
+            .yuan1 {
+                font-size: 35px;
+            }
+
+            .content,
+            .content1,
+            .content2,
+            .content3 {
+                font-size: 24px;
+                padding: 0 20px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .hamburger {
+                display: block;
+                margin-right: 15px;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%; /* Change from right: -100% to left: -100% */
+                top: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #000;
+                flex-direction: column;
+                padding-top: 80px;
+                transition: 0.3s ease;
+                box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1); /* Change shadow direction */
+            }
+
+            .nav-links.active {
+                left: 0; 
+            }
+
+            .gallery,
+            .about,
+            .artists1,
+            .home1 {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .vestral {
+                font-size: 40px;
+                height: 90px;
+            }
+
+            .yuan-video {
+                height: 300px;
+            }
+
+            .content,
+            .content1,
+            .content2,
+            .content3 {
+                font-size: 18px;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 12px;
+                padding: 0 15px;
+            }
+
+            .back {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .message-container {
+                font-size: 35px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .nav-links {
+                gap: 5px;
+            }
+
+            .gallery,
+            .about,
+            .artists1,
+            .home1 {
+                font-size: 0.8rem;
+                margin-right: 3px;
+            }
+
+            .vestral {
+                font-size: 30px;
+                height: 70px;
+            }
+
+            .yuan-video {
+                height: 250px;
+            }
+
+            .content,
+            .content1,
+            .content2,
+            .content3 {
+                font-size: 16px;
+            }
+
+            .copyright-2024-vestral {
+                font-size: 10px;
+                letter-spacing: 0.15em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="home1">HOME</a>
+            <a href="artists.html" class="artists1" id="aRTISTSText">ARTISTS</a>
+            <a href="gallery.html" class="gallery" id="gALLERYText">GALLERY</a>
+            <a href="about.html" class="about" id="aBOUTText">ABOUT</a>
+        </div>
+        <a href="contact.html" class="contact" id="contact">
+            <img alt="" src="IMAGES/icons8-envelope-50.png">
+        </a>
+    </div>
+    
+    <div class="home">
+        <div class="body-texts">
+            <div class="vestral" id="vestral">VESTRAL</div>
+        </div>
+
+        <div class="yuan-gallery reveal">
+            <div class="yuan1">RENYA</div>
+            <div class="this-months-top1">THIS MONTH'S TOP 3</div>
+    
+            <video class="yuan-video" controls width="1500">
+                <source src="VIDEOS/rerenya.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="back-link">
+                <a href="renya.html" class="back">BACK</a>
+            </div>
+            <div class ="message-container">
+                <p class="yuan">
+                    <b><span>About Renya</span></b>
+                </p>
+
+                <p class="content">
+                    Renya is a fashion icon with a distinct avant-garde flair, whose daring looks have garnered a dedicated following on Instagram. Renowned for their ability to curate bold, high-fashion streetwear ensembles, Renya’s outfits often challenge traditional fashion norms with an exciting mix of oversized silhouettes, layered textures, and striking patterns. Each look is a statement in itself, reflecting a fearless attitude toward dressing and a deep appreciation for Japanese street style influences.                
+                </p>
+
+                <p class="content1">
+                    As a fashion director and stylist, Renya brings an artistic vision to every outfit they wear, blending high-end luxury pieces with thrifty finds, often merging vintage elements with modern trends. Renya’s feed is a testament to their creative freedom and commitment to making fashion accessible yet revolutionary. With collaborations and features in leading fashion platforms, Renya is a leader in modern street fashion, setting trends and breaking the mold of conventional style.                
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="copyright-2024-vestral">© COPYRIGHT 2024. VESTRAL. ALL RIGHTS RESERVED. DESIGN BY NERO</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+    
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+    
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
